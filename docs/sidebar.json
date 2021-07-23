@@ -2,6 +2,7 @@
   "pixelstitch": {
     "Overview": "/",
     "Core": "core.html",
-    "IO": "io.html"
+    "IO": "io.html",
+    "metrics": "metrics.html"
   }
 }

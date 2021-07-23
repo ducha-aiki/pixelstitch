@@ -15,6 +15,9 @@ entries:
     - output: web,pdf
       title: IO
       url: io.html
+    - output: web,pdf
+      title: metrics
+      url: metrics.html
     output: web
     title: pixelstitch
   output: web
