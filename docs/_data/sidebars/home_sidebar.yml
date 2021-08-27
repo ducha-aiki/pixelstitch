@@ -13,6 +13,12 @@ entries:
       title: Core
       url: core.html
     - output: web,pdf
+      title: deephelp
+      url: deephelp.html
+    - output: web,pdf
+      title: imgproc
+      url: imgproc.html
+    - output: web,pdf
       title: IO
       url: io.html
     - output: web,pdf

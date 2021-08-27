@@ -2,6 +2,8 @@
   "pixelstitch": {
     "Overview": "/",
     "Core": "core.html",
+    "deephelp": "deephelp.html",
+    "imgproc": "imgproc.html",
     "IO": "io.html",
     "metrics": "metrics.html"
   }
