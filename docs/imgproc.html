@@ -82,7 +82,7 @@ nb_path: "imgproc.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_bbox" class="doc_header"><code>get_bbox</code><a href="https://github.com/ducha-aiki/pixelstitch/tree/master/pixelstitch/imgproc.py#L12" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_bbox</code>(<strong><code>pts_</code></strong>)</p>
+<h4 id="get_bbox" class="doc_header"><code>get_bbox</code><a href="https://github.com/ducha-aiki/pixelstitch/tree/master/pixelstitch/imgproc.py#L13" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_bbox</code>(<strong><code>pts_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -115,7 +115,7 @@ nb_path: "imgproc.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="overlay_common_area" class="doc_header"><code>overlay_common_area</code><a href="https://github.com/ducha-aiki/pixelstitch/tree/master/pixelstitch/imgproc.py#L20" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>overlay_common_area</code>(<strong><code>img1</code></strong>, <strong><code>img2</code></strong>, <strong><code>pts1</code></strong>, <strong><code>pts2</code></strong>)</p>
+<h4 id="overlay_common_area" class="doc_header"><code>overlay_common_area</code><a href="https://github.com/ducha-aiki/pixelstitch/tree/master/pixelstitch/imgproc.py#L21" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>overlay_common_area</code>(<strong><code>img1</code></strong>, <strong><code>img2</code></strong>, <strong><code>pts1</code></strong>, <strong><code>pts2</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -246,7 +246,7 @@ The function is handy to check if the correspondences define a good transformati
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="draw_epipolar_lines" class="doc_header"><code>draw_epipolar_lines</code><a href="https://github.com/ducha-aiki/pixelstitch/tree/master/pixelstitch/imgproc.py#L44" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>draw_epipolar_lines</code>(<strong><code>img1</code></strong>, <strong><code>img2</code></strong>, <strong><code>pts1_</code></strong>, <strong><code>pts2_</code></strong>, <strong><code>Fm</code></strong>, <strong><code>ax</code></strong>)</p>
+<h4 id="draw_epipolar_lines" class="doc_header"><code>draw_epipolar_lines</code><a href="https://github.com/ducha-aiki/pixelstitch/tree/master/pixelstitch/imgproc.py#L45" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>draw_epipolar_lines</code>(<strong><code>img1</code></strong>, <strong><code>img2</code></strong>, <strong><code>pts1_</code></strong>, <strong><code>pts2_</code></strong>, <strong><code>Fm</code></strong>, <strong><code>ax</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -279,7 +279,41 @@ The function is handy to check if the correspondences define a good transformati
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_model" class="doc_header"><code>get_model</code><a href="https://github.com/ducha-aiki/pixelstitch/tree/master/pixelstitch/imgproc.py#L66" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_model</code>(<strong><code>pts1_</code></strong>, <strong><code>pts2_</code></strong>, <strong><code>model_type</code></strong>=<em><code>'F'</code></em>, <strong><code>leave_idx</code></strong>=<em><code>None</code></em>)</p>
+<h4 id="clip_corrs" class="doc_header"><code>clip_corrs</code><a href="https://github.com/ducha-aiki/pixelstitch/tree/master/pixelstitch/imgproc.py#L62" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>clip_corrs</code>(<strong><code>pts1</code></strong>, <strong><code>pts2</code></strong>)</p>
+</blockquote>
+<p>Crops out pts1 and pts2 to the smallest common length</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/opt/homebrew/Caskroom/miniforge/base/envs/python39/lib/python3.9/site-packages/ipykernel/ipkernel.py:283: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
+  and should_run_async(code)
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="get_model" class="doc_header"><code>get_model</code><a href="https://github.com/ducha-aiki/pixelstitch/tree/master/pixelstitch/imgproc.py#L67" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_model</code>(<strong><code>pts1_</code></strong>, <strong><code>pts2_</code></strong>, <strong><code>model_type</code></strong>=<em><code>'F'</code></em>, <strong><code>leave_idx</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 
 </div>
@@ -312,7 +346,7 @@ The function is handy to check if the correspondences define a good transformati
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="draw_homography" class="doc_header"><code>draw_homography</code><a href="https://github.com/ducha-aiki/pixelstitch/tree/master/pixelstitch/imgproc.py#L114" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>draw_homography</code>(<strong><code>img1</code></strong>, <strong><code>img2</code></strong>, <strong><code>pts1_</code></strong>, <strong><code>pts2_</code></strong>, <strong><code>H</code></strong>, <strong><code>ax</code></strong>)</p>
+<h4 id="draw_homography" class="doc_header"><code>draw_homography</code><a href="https://github.com/ducha-aiki/pixelstitch/tree/master/pixelstitch/imgproc.py#L115" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>draw_homography</code>(<strong><code>img1</code></strong>, <strong><code>img2</code></strong>, <strong><code>pts1_</code></strong>, <strong><code>pts2_</code></strong>, <strong><code>H</code></strong>, <strong><code>ax</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -472,7 +506,62 @@ The function is handy to check if the correspondences define a good transformati
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="tilt_image" class="doc_header"><code>tilt_image</code><a href="https://github.com/ducha-aiki/pixelstitch/tree/master/pixelstitch/imgproc.py#L141" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>tilt_image</code>(<strong><code>img</code></strong>, <strong><code>angle_vert_deg</code></strong>, <strong><code>angle_hor_deg</code></strong>)</p>
+<h4 id="tilt_image" class="doc_header"><code>tilt_image</code><a href="https://github.com/ducha-aiki/pixelstitch/tree/master/pixelstitch/imgproc.py#L142" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>tilt_image</code>(<strong><code>img</code></strong>, <strong><code>angle_vert_deg</code></strong>, <strong><code>angle_hor_deg</code></strong>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/opt/homebrew/Caskroom/miniforge/base/envs/python39/lib/python3.9/site-packages/ipykernel/ipkernel.py:283: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
+  and should_run_async(code)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/opt/homebrew/Caskroom/miniforge/base/envs/python39/lib/python3.9/site-packages/ipykernel/ipkernel.py:283: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
+  and should_run_async(code)
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="rectify_plane" class="doc_header"><code>rectify_plane</code><a href="https://github.com/ducha-aiki/pixelstitch/tree/master/pixelstitch/imgproc.py#L188" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>rectify_plane</code>(<strong><code>img</code></strong>, <strong><code>angle_vert_deg</code></strong>, <strong><code>angle_hor_deg</code></strong>)</p>
 </blockquote>
 
 </div>
