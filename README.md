@@ -68,11 +68,7 @@ display(HTML("<style>.container { width:95% !important; }</style>"))
 CA.start(figsize=(12,7))
 ```
 
-    /opt/homebrew/Caskroom/miniforge/base/envs/python39/lib/python3.9/site-packages/ipykernel/ipkernel.py:283: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
-      and should_run_async(code)
-
-
-
+![image.png](index_files/att_00008.png)
 
 # Controls
 
