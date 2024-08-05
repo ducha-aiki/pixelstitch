@@ -33,13 +33,13 @@ print (img_pairs_list)
       and should_run_async(code)
 
 
-Now we are ready to initialize `CorrespondenceAnnotator`. Don't forget to declare magic command ```%matplotlib notebook```.
+Now we are ready to initialize `CorrespondenceAnnotator`. Don't forget to declare magic command ```%matplotlib widget```.
 **WITHOUT MAGIC IT WOULD NOT WORK**
 
 You also should explicitly specify, if you want to save (and possibly over-write previous better annotation) current correspondences automatically when clicking on **prev** and **next** buttons for going to the next pair. 
 
 ```python
-%matplotlib notebook
+%matplotlib widget
 from pixelstitch.core import *
 CA = CorrespondenceAnnotator(img_pairs_list, save_on_next=True)
 ```
@@ -63,6 +63,7 @@ It is also recommended to set full page width for the jupyter
 
 
 ```python
+%matplotlib widget
 from IPython.core.display import display, HTML
 display(HTML("<style>.container { width:95% !important; }</style>"))
 CA.start(figsize=(12,7))
