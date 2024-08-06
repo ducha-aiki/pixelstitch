@@ -1,0 +1,8 @@
+website:
+  sidebar:
+    contents:
+      - index.ipynb
+      - core.ipynb
+      - imgproc.ipynb
+      - io.ipynb
+      - metrics.ipynb
