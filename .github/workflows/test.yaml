@@ -26,6 +26,9 @@ jobs:
           # nbdev 2.x (settings.ini layout) needs era-matching execnb/fastcore
           pip install -e . "nbdev<3" "execnb<0.2" "fastcore<2" jupyter ipympl ${{ matrix.pins }}
       - name: Notebooks clean and in sync with library
+        # Generated-file markers differ between nbdev minor versions, so run
+        # the sync check only on the leg whose nbdev matches the committed files.
+        if: matrix.name == 'modern'
         run: |
           nbdev_export
           nbdev_clean
