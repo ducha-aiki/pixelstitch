@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "pixelstitch"
+  site-url: "https://ducha-aiki.github.io/pixelstitch/"
+  description: "Matplotlib-based tool for labeling the two-view correspondences"
+  repo-branch: master
+  repo-url: "https://github.com/ducha-aiki/pixelstitch/tree/master/"
