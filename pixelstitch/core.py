@@ -3,7 +3,7 @@
 # %% auto #0
 __all__ = ['clahe_img', 'CorrespondenceAnnotator']
 
-# %% ../core.ipynb #f516a0c5
+# %% ../core.ipynb #42170dc0
 import cv2
 from .io import *
 def clahe_img(rgb):
@@ -15,10 +15,11 @@ def clahe_img(rgb):
     rgb = cv2.cvtColor(lab, cv2.COLOR_LAB2RGB)
     return rgb
 
-# %% ../core.ipynb #0cdfb662
+# %% ../core.ipynb #d57cb67a
 import math
 import matplotlib
 import matplotlib.pyplot as plt
+from matplotlib.backend_bases import MouseButton
 import numpy as np
 import ipywidgets as wdg  # Using the ipython notebook widgets
 import cv2
@@ -85,8 +86,8 @@ class CorrespondenceAnnotator():
         self.hp1, = self.ax1.plot([], [], '-o', markersize=10, color='m')
         self.hp2, = self.ax2.plot([], [], '-o', markersize=10, color='m')
         
-        self.texts1 = [self.ax1.text([], [], '', fontsize=12) for i in range(self.max_pts)]
-        self.texts2 = [self.ax2.text([], [], '', fontsize=12) for i in range(self.max_pts)]
+        self.texts1 = [self.ax1.text(0, 0, '', fontsize=12) for i in range(self.max_pts)]
+        self.texts2 = [self.ax2.text(0, 0, '', fontsize=12) for i in range(self.max_pts)]
         #self.fig.tight_layout()
         
         self.next_button = wdg.Button(description="Next")
@@ -316,20 +317,24 @@ class CorrespondenceAnnotator():
                             self.pair_state['pts1'], 
                             self.pair_state['pts2'], model, self.ax3)
         return
+    def _clicks_allowed(self):
+        # Toolbar may be absent on headless backends; toolbar.mode is '' when
+        # no zoom/pan tool is active, on both matplotlib 3.4 and modern ipympl.
+        toolbar = getattr(self.figure.canvas, 'toolbar', None)
+        if toolbar is None:
+            return True
+        return getattr(toolbar, 'mode', '') == ''
     def process_user_click(self, event):
         # We are interested only in LB Clicks in the images
         if event.inaxes not in [self.ax1, self.ax2]:
             return
-        if str(event.button) not in  ['MouseButton.LEFT', 'MouseButton.RIGHT']:
+        if event.button not in (MouseButton.LEFT, MouseButton.RIGHT):
             return
         # If left click: add point, if right click: delete
-        picking_mode = str(event.button) == 'MouseButton.LEFT'
+        picking_mode = event.button == MouseButton.LEFT
 
-        # Not adding points when zooming
-        zoom_pan = ['Cursors.SELECT_REGION', 'Cursors.MOVE']
-        pick = 'Cursors.POINTER'
-        ptr_type = str(self.figure.canvas.toolbar.cursor)
-        if ptr_type != pick:
+        # Not adding points when a zoom/pan tool is active
+        if not self._clicks_allowed():
             return
         # Select proper subplot to work with
         ax = event.inaxes

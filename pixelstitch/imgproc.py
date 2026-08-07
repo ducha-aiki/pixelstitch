@@ -4,7 +4,7 @@
 __all__ = ['get_bbox', 'overlay_common_area', 'draw_epipolar_lines', 'clip_corrs', 'get_model', 'draw_homography', 'tilt_image',
            'rectify_plane']
 
-# %% ../imgproc.ipynb #a18f1030
+# %% ../imgproc.ipynb #d5608081
 import torch
 import kornia as K
 import kornia.geometry as KG
@@ -37,7 +37,7 @@ def overlay_common_area(img1, img2, pts1, pts2):
     img1_warped[:,:,0] = img2[min_y2:max_y2, min_x2:max_x2,0] 
     return img1_warped
 
-# %% ../imgproc.ipynb #76cae2f7
+# %% ../imgproc.ipynb #f6940e11
 import torch
 import kornia.feature as KF
 import kornia.geometry as KG
@@ -137,7 +137,7 @@ def draw_homography(img1, img2, pts1_, pts2_, H, ax):
                  [True for i in range(min_size)], H=H.astype(float), ax=ax, draw_dict=draw_dict)
     return
 
-# %% ../imgproc.ipynb #3f76fcab
+# %% ../imgproc.ipynb #67641bfd
 from copy import deepcopy
 import math
 def tilt_image(img, angle_vert_deg, angle_hor_deg):
@@ -183,7 +183,7 @@ def tilt_image(img, angle_vert_deg, angle_hor_deg):
     img_out = cv2.warpPerspective(img, H,  (new_w, new_h))
     return img_out, H, new_w, new_h
 
-# %% ../imgproc.ipynb #31434862
+# %% ../imgproc.ipynb #a2e167cd
 from copy import deepcopy
 import math
 def rectify_plane(img, angle_vert_deg, angle_hor_deg):
