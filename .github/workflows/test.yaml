@@ -10,7 +10,8 @@ jobs:
         include:
           - name: oldest
             python-version: "3.9"
-            pins: '"matplotlib~=3.4.3" "numpy<2"'
+            # matplotlib-inline >=0.2 needs mpl.__version_info__ (mpl >=3.6)
+            pins: '"matplotlib~=3.4.3" "numpy<2" "matplotlib-inline==0.1.6"'
           - name: modern
             python-version: "3.12"
             pins: ''
