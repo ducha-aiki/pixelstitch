@@ -1,0 +1,127 @@
+[
+  {
+    "objectID": "imgproc.html",
+    "href": "imgproc.html",
+    "title": "imgproc",
+    "section": "",
+    "text": "/opt/homebrew/Caskroom/miniforge/base/envs/python39/lib/python3.9/site-packages/ipykernel/ipkernel.py:283: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.\n  and should_run_async(code)\n\n\n\nsource\n\noverlay_common_area\ndef overlay_common_area(\n    img1, img2, pts1, pts2\n):\nCall self as a function.\n\nsource\n\n\nget_bbox\ndef get_bbox(\n    pts_\n):\nCall self as a function.\nFunction overlay_common_area warps the common area, based on the (planar) correspondences between two images, of image 1 into image 2 and replaces one of RGB channels with original image 2. The warp is perspective warp, defined be the least-squares fit of the correspondences. If some of them are incorrect - bad luck :) The function is handy to check if the correspondences define a good transformation between images.\n\nimport matplotlib.pyplot as plt\nimport cv2\nimport numpy as np\n\nimg1_fname = 'sample_project/ministry/01.png'\nimg2_fname = 'sample_project/ministry/02.png'\nc_fname = 'sample_project/ministry/corrs.txt'\n\nimg1 = cv2.cvtColor(cv2.imread(img1_fname), cv2.COLOR_BGR2RGB)\nimg2 = cv2.cvtColor(cv2.imread(img2_fname), cv2.COLOR_BGR2RGB)\ncorrs = np.loadtxt(c_fname)\noverlay = overlay_common_area(img1, img2, corrs[:,:2], corrs[:,2:])\nplt.imshow(overlay)\n\n/opt/homebrew/Caskroom/miniforge/base/envs/python39/lib/python3.9/site-packages/ipykernel/ipkernel.py:283: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.\n  and should_run_async(code)\n\n\n\n\n\n\n\n\n\n\nsource\n\n\ndraw_homography\ndef draw_homography(\n    img1, img2, pts1_, pts2_, H, ax\n):\nCall self as a function.\n\nsource\n\n\nget_model\ndef get_model(\n    pts1_, pts2_, model_type:str='F', leave_idx:NoneType=None\n):\nCall self as a function.\n\nsource\n\n\nclip_corrs\ndef clip_corrs(\n    pts1, pts2\n):\nCrops out pts1 and pts2 to the smallest common length\n\nsource\n\n\ndraw_epipolar_lines\ndef draw_epipolar_lines(\n    img1, img2, pts1_, pts2_, Fm, ax\n):\nCall self as a function.\n\nimport matplotlib.pyplot as plt\nimport cv2\nimport numpy as np\n\nimg1_fname = 'sample_project/ministry/01.png'\nimg2_fname = 'sample_project/ministry/02.png'\nc_fname = 'sample_project/ministry/corrs.txt'\n\nimg1 = cv2.cvtColor(cv2.imread(img1_fname), cv2.COLOR_BGR2RGB)\nimg2 = cv2.cvtColor(cv2.imread(img2_fname), cv2.COLOR_BGR2RGB)\ncorrs = np.loadtxt(c_fname)\nF, inliers, err = get_model(corrs[:,:2], corrs[:,2:], 'F')\n\nfig, ax = plt.subplots(1,1)\ndraw_epipolar_lines(img1, img2, corrs[:,:2], corrs[:,2:], F, ax)\n\n/opt/homebrew/Caskroom/miniforge/base/envs/python39/lib/python3.9/site-packages/ipykernel/ipkernel.py:283: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.\n  and should_run_async(code)\n\n\n\n\n\n\n\n\n\n\nH, inliers, err = get_model(corrs[:,:2], corrs[:,2:], 'H')\nfig, ax = plt.subplots(1,1, figsize=(8,4))\ndraw_homography(img1, img2, corrs[:,:2], corrs[:,2:], H, ax)\n\n/opt/homebrew/Caskroom/miniforge/base/envs/python39/lib/python3.9/site-packages/ipykernel/ipkernel.py:283: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.\n  and should_run_async(code)\n\n\n\n\n\n\n\n\n\n\nsource\n\n\ntilt_image\ndef tilt_image(\n    img, angle_vert_deg, angle_hor_deg\n):\nCall self as a function.\n\nsource\n\n\nrectify_plane\ndef rectify_plane(\n    img, angle_vert_deg, angle_hor_deg\n):\nCall self as a function.\nThis function helps showing tilted version of the images for more convinient labeling\n\nimport matplotlib.pyplot as plt\nimport cv2\nimport numpy as np\n\nimg1_fname = 'sample_project/ministry/01.png'\nimg1 = cv2.cvtColor(cv2.imread(img1_fname), cv2.COLOR_BGR2RGB)\n\nimg_tilted, H, new_w, new_h = tilt_image(img1, 30,0)\nplt.imshow(img_tilted)\n\n/opt/homebrew/Caskroom/miniforge/base/envs/python39/lib/python3.9/site-packages/ipykernel/ipkernel.py:283: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.\n  and should_run_async(code)\n&lt;ipython-input-88-6830b16fa8e8&gt;:42: DeprecationWarning: an integer is required (got type numpy.float32).  Implicit conversion to integers using __int__ is deprecated, and may be removed in a future version of Python.\n  img_out = cv2.warpPerspective(img, H,  (new_corners[:,0].max(),\n&lt;ipython-input-88-6830b16fa8e8&gt;:42: DeprecationWarning: an integer is required (got type numpy.float32).  Implicit conversion to integers using __int__ is deprecated, and may be removed in a future version of Python.\n  img_out = cv2.warpPerspective(img, H,  (new_corners[:,0].max(),",
+    "crumbs": [
+      "imgproc"
+    ]
+  },
+  {
+    "objectID": "core.html",
+    "href": "core.html",
+    "title": "Core",
+    "section": "",
+    "text": "source\n\nclahe_img\ndef clahe_img(\n    rgb\n):\nCall self as a function.\n\nsource\n\n\nCorrespondenceAnnotator\ndef CorrespondenceAnnotator(\n    img_pair_list, save_on_next, corrs_save_name:str='corrs.txt', max_pts:int=100, error_to_show_index:float=5.0\n):\nInitialize self. See help(type(self)) for accurate signature.\nLet’s test our annotator on a sample project. It needs a list of triplets: path_to_img1, path_to_img2, path_to_corrs_to_save.\n\nimport os\nrootdir = 'sample_project'\npairs = os.listdir(rootdir)\nimg_pairs_list = []\nfor p in pairs:\n    if p == '.DS_Store':\n        continue\n    cur_dir = os.path.join(rootdir, p)\n    img_pairs_list.append((os.path.join(cur_dir, '01.png'),\n                           os.path.join(cur_dir, '02.png'),\n                           os.path.join(cur_dir, 'corrs.txt')))\n\nprint (img_pairs_list)\n\n[('sample_project/ministry/01.png', 'sample_project/ministry/02.png', 'sample_project/ministry/corrs.txt'), ('sample_project/petrzin/01.png', 'sample_project/petrzin/02.png', 'sample_project/petrzin/corrs.txt')]\n\n\nNow we are ready to initialize CorrespondenceAnnotator. Don’t forget to declare %matplotlib widget (or %matplotlib notebook on classic notebook 6 with matplotlib &lt; 3.5).\nYou also should explicitly specify, if you want to save (and possibly over-write previous better annotation) current correspondences automatically when clicking on prev and next buttons for going to the next pair.\n\nCA = CorrespondenceAnnotator(img_pairs_list, save_on_next=False)\n\n/opt/homebrew/Caskroom/miniforge/base/envs/python39/lib/python3.9/site-packages/ipykernel/ipkernel.py:283: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.\n  and should_run_async(code)\n\n\nNow we can run the annotation.\nLeft-click on the image to add a point\nright-click – to remove the point from both images.\n\n\nMatplotlib shortcuts:\n\no for zoom\np for pan (move)\n\n\nfrom IPython.display import display, HTML\ndisplay(HTML(\"&lt;style&gt;.container { width:95% !important; }&lt;/style&gt;\"))\nCA.start(figsize=(12,7))\n\n/opt/homebrew/Caskroom/miniforge/base/envs/python39/lib/python3.9/site-packages/ipykernel/ipkernel.py:283: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.\n  and should_run_async(code)",
+    "crumbs": [
+      "Core"
+    ]
+  },
+  {
+    "objectID": "CONTRIBUTING.html",
+    "href": "CONTRIBUTING.html",
+    "title": "How to contribute",
+    "section": "",
+    "text": "Before anything else, please install the git hooks that run automatic scripts during each commit and merge to strip the notebooks of superfluous metadata (and avoid merge conflicts). After cloning the repository, run the following command inside it:\nnbdev_install_git_hooks\n\n\n\n\nEnsure the bug was not already reported by searching on GitHub under Issues.\nIf you’re unable to find an open issue addressing the problem, open a new one. Be sure to include a title and clear description, as much relevant information as possible, and a code sample or an executable test case demonstrating the expected behavior that is not occurring.\nBe sure to add the complete error messages.\n\n\n\n\nOpen a new GitHub pull request with the patch.\nEnsure that your PR includes a test that fails without your patch, and pass with it.\nEnsure the PR description clearly describes the problem and solution. Include the relevant issue number if applicable.\n\n\n\n\n\n\nKeep each PR focused. While it’s more convenient, do not combine several unrelated fixes together. Create as many branches as needing to keep each PR focused.\nDo not mix style changes/fixes with “functional” changes. It’s very difficult to review such PRs and it most likely get rejected.\nDo not add/remove vertical whitespace. Preserve the original style of the file you edit as much as you can.\nDo not turn an already submitted PR into your development playground. If after you submitted PR, you discovered that more work is needed - close the PR, do the required work and then submit a new PR. Otherwise each of your commits requires attention from maintainers of the project.\nIf, however, you submitted a PR and received a request for changes, you should proceed with commits inside that PR, so that the maintainer can see the incremental fixes and won’t need to review the whole PR again. In the exception case where you realize it’ll take many many commits to complete the requests, then it’s probably best to close the PR, do the work and then submit it again. Use common sense where you’d choose one way over another.\n\n\n\n\n\nDocs are automatically created from the notebooks in the nbs folder."
+  },
+  {
+    "objectID": "CONTRIBUTING.html#how-to-get-started",
+    "href": "CONTRIBUTING.html#how-to-get-started",
+    "title": "How to contribute",
+    "section": "",
+    "text": "Before anything else, please install the git hooks that run automatic scripts during each commit and merge to strip the notebooks of superfluous metadata (and avoid merge conflicts). After cloning the repository, run the following command inside it:\nnbdev_install_git_hooks"
+  },
+  {
+    "objectID": "CONTRIBUTING.html#did-you-find-a-bug",
+    "href": "CONTRIBUTING.html#did-you-find-a-bug",
+    "title": "How to contribute",
+    "section": "",
+    "text": "Ensure the bug was not already reported by searching on GitHub under Issues.\nIf you’re unable to find an open issue addressing the problem, open a new one. Be sure to include a title and clear description, as much relevant information as possible, and a code sample or an executable test case demonstrating the expected behavior that is not occurring.\nBe sure to add the complete error messages.\n\n\n\n\nOpen a new GitHub pull request with the patch.\nEnsure that your PR includes a test that fails without your patch, and pass with it.\nEnsure the PR description clearly describes the problem and solution. Include the relevant issue number if applicable."
+  },
+  {
+    "objectID": "CONTRIBUTING.html#pr-submission-guidelines",
+    "href": "CONTRIBUTING.html#pr-submission-guidelines",
+    "title": "How to contribute",
+    "section": "",
+    "text": "Keep each PR focused. While it’s more convenient, do not combine several unrelated fixes together. Create as many branches as needing to keep each PR focused.\nDo not mix style changes/fixes with “functional” changes. It’s very difficult to review such PRs and it most likely get rejected.\nDo not add/remove vertical whitespace. Preserve the original style of the file you edit as much as you can.\nDo not turn an already submitted PR into your development playground. If after you submitted PR, you discovered that more work is needed - close the PR, do the required work and then submit a new PR. Otherwise each of your commits requires attention from maintainers of the project.\nIf, however, you submitted a PR and received a request for changes, you should proceed with commits inside that PR, so that the maintainer can see the incremental fixes and won’t need to review the whole PR again. In the exception case where you realize it’ll take many many commits to complete the requests, then it’s probably best to close the PR, do the work and then submit it again. Use common sense where you’d choose one way over another."
+  },
+  {
+    "objectID": "CONTRIBUTING.html#do-you-want-to-contribute-to-the-documentation",
+    "href": "CONTRIBUTING.html#do-you-want-to-contribute-to-the-documentation",
+    "title": "How to contribute",
+    "section": "",
+    "text": "Docs are automatically created from the notebooks in the nbs folder."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "pyxelstitch",
+    "section": "",
+    "text": "pip install pixelstitch\nRequires Python &gt;= 3.9. Works with current matplotlib/numpy/notebook/JupyterLab/VS Code — use the %matplotlib widget magic (ipympl) before starting the annotator.\n\n\nClassic notebook 6 setups (matplotlib &lt; 3.5)\n\nOld environments keep working: use %matplotlib notebook instead of %matplotlib widget. A known-good recipe:\npip install \"pixelstitch\" \"matplotlib&lt;3.5\" \"numpy&lt;2\" \"notebook&lt;7\" ipympl",
+    "crumbs": [
+      "pyxelstitch"
+    ]
+  },
+  {
+    "objectID": "index.html#install",
+    "href": "index.html#install",
+    "title": "pyxelstitch",
+    "section": "",
+    "text": "pip install pixelstitch\nRequires Python &gt;= 3.9. Works with current matplotlib/numpy/notebook/JupyterLab/VS Code — use the %matplotlib widget magic (ipympl) before starting the annotator.\n\n\nClassic notebook 6 setups (matplotlib &lt; 3.5)\n\nOld environments keep working: use %matplotlib notebook instead of %matplotlib widget. A known-good recipe:\npip install \"pixelstitch\" \"matplotlib&lt;3.5\" \"numpy&lt;2\" \"notebook&lt;7\" ipympl",
+    "crumbs": [
+      "pyxelstitch"
+    ]
+  },
+  {
+    "objectID": "index.html#how-to-use",
+    "href": "index.html#how-to-use",
+    "title": "pyxelstitch",
+    "section": "How to use",
+    "text": "How to use\nLet’s test our annotator on a sample project. It needs a list of triplets: (path_to_img1, path_to_img2, path_to_corrs_to_save).\n\nimport os\nrootdir = 'sample_project'\npairs = os.listdir(rootdir)\nimg_pairs_list = []\nfor p in pairs:\n    if p == '.DS_Store':\n        continue\n    cur_dir = os.path.join(rootdir, p)\n    img_pairs_list.append((os.path.join(cur_dir, '01.png'),\n                           os.path.join(cur_dir, '02.png'),\n                           os.path.join(cur_dir, 'corrs.txt')))\n\nprint (img_pairs_list)\n\n[('sample_project/ministry/01.png', 'sample_project/ministry/02.png', 'sample_project/ministry/corrs.txt'), ('sample_project/petrzin/01.png', 'sample_project/petrzin/02.png', 'sample_project/petrzin/corrs.txt')]\n\n\n/opt/homebrew/Caskroom/miniforge/base/envs/python39/lib/python3.9/site-packages/ipykernel/ipkernel.py:283: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.\n  and should_run_async(code)\n\n\nNow we are ready to initialize CorrespondenceAnnotator. Don’t forget to declare magic command %matplotlib widget. WITHOUT MAGIC IT WOULD NOT WORK\nYou also should explicitly specify, if you want to save (and possibly over-write previous better annotation) current correspondences automatically when clicking on prev and next buttons for going to the next pair.\n\nfrom pixelstitch.core import *\nCA = CorrespondenceAnnotator(img_pairs_list, save_on_next=True)\n\n/opt/homebrew/Caskroom/miniforge/base/envs/python39/lib/python3.9/site-packages/ipykernel/ipkernel.py:283: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.\n  and should_run_async(code)\n\n\nNow we can run the annotation.\nLeft-click on the image to add a point\nright-click – to remove the point from both images.\n\nMatplotlib shortcuts:\n\no for zoom\np for pan (move)\n\nIt is also recommended to set full page width for the jupyter\n\nfrom IPython.display import display, HTML\ndisplay(HTML(\"&lt;style&gt;.container { width:95% !important; }&lt;/style&gt;\"))\nCA.start(figsize=(12,7))\n\n\n\n\nimage.png",
+    "crumbs": [
+      "pyxelstitch"
+    ]
+  },
+  {
+    "objectID": "index.html#selectors",
+    "href": "index.html#selectors",
+    "title": "pyxelstitch",
+    "section": "Selectors",
+    "text": "Selectors\n\nModel. One can select between “F” – fundamental matrix and “H” – homography. The selection influences the reprojection error type, and the visualization of the models and reprojection errors, shown when clicked on NextCorrsValPoint, NextCorrsValAll and ShowModel buttons.",
+    "crumbs": [
+      "pyxelstitch"
+    ]
+  },
+  {
+    "objectID": "index.html#buttons",
+    "href": "index.html#buttons",
+    "title": "pyxelstitch",
+    "section": "Buttons",
+    "text": "Buttons\n\nNextCorrsValPoint. Shows the correspondence in the bottom axis. The image title shows correspondence index and the reprojection error. If Model is F, it will show induced epipolar line, if H – the position of the reprojected point from other image. The model is estimated with all other correspondences except current one.\nNextCorrsValAll. Shows the correspondences in the bottom axis. Similar to NextCorrsValPoint button, but shows all points. The model is estimated with all correspondences except current one, which index is shown in the title. \nShowModel. Has different behavoir depending on the Model selected. For F – shows correspondences with their induced epipolar lines. Unlike NextCorrsValPoint and NextCorrsValPoint all correspondences are used for model estimation. \nFor H, the button shows overlay of image 1 reprojected into image2 with image2. The reprojected area is defined by the convex hull of the labelled correspondences. Next click flips the order, i.e. shows the image 2 reprojected into image 1. \nSave points – saves (overwrites) the correspondences into the text file.\nPrev – Loads and shows previous image pair to label. If the CorrespondenceAnnotator was initialized with save_on_next=True, the current pair correspondences are saved before the switch. Change is not cyclical, so the button does nothing on 1st image pair\nNext – Loads and shows next image pair to label. If the CorrespondenceAnnotator was initialized with save_on_next=True, the current pair correspondences are saved before the switch.Change is not cyclical, so the button does nothing on last image pair.\nCLAHE – Images are shown with enhanced contrast with CLAHE algorithm. \nPick 4 points for homography – Special mode. User picks 4 points in one image, which define new fronto-parallel view. This mode helps for labeling obscure views, see example below. The order of the points: top-left -&gt; top-right -&gt; bottom right -&gt; bottom left. After the 4 point picked, the mode is switched off, so user needs to click the button again if she wants to rectify another image.\nResetView – Resets any recifications or zoom done to images.\n\n\nRectification picking mode example\n3 points are selected \nAll points are selected and image1 is rectified to the rectangle, defined by the selected points",
+    "crumbs": [
+      "pyxelstitch"
+    ]
+  },
+  {
+    "objectID": "io.html",
+    "href": "io.html",
+    "title": "IO",
+    "section": "",
+    "text": "source\n\nload_pts\ndef load_pts(\n    fname\n):\nCall self as a function.\n\nsource\n\n\nimread\ndef imread(\n    path\n):\nCall self as a function.",
+    "crumbs": [
+      "IO"
+    ]
+  },
+  {
+    "objectID": "metrics.html",
+    "href": "metrics.html",
+    "title": "metrics",
+    "section": "",
+    "text": "/opt/homebrew/Caskroom/miniforge/base/envs/python39/lib/python3.9/site-packages/ipykernel/ipkernel.py:283: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.\n  and should_run_async(code)\n\n\n\nsource\n\nget_big_errors_string\ndef get_big_errors_string(\n    errors, th:float=3.0\n):\nCall self as a function.\n\nsource\n\n\nget_error_stat_string\ndef get_error_stat_string(\n    errors\n):\nCall self as a function.\n\nsource\n\n\nleave_one_out_H_validation\ndef leave_one_out_H_validation(\n    corrs:ndarray, error:str='symtransfer'\n):\nCall self as a function.\n\nsource\n\n\nleave_one_out_F_validation\ndef leave_one_out_F_validation(\n    corrs:ndarray, error:str='symepi'\n):\nCall self as a function.\nThe function estimates the fundamental matrix or homography using (n-1) correspondences and returns error on that leaved-out correspondence (corr). The operation is repeated for every corr and the output is dict with those errors, together with min, mean, max and max_idx. I have got the idea from the VSAC paper\n\nimport matplotlib.pyplot as plt\ncorrs = np.loadtxt('sample_project/petrzin/corrs.txt')\nerrors = leave_one_out_F_validation(corrs, 'symepi')\nprint (errors.keys())\nprint (f'Symmetrical epipolar distance, min error = {errors[\"min\"]:.4f}, max_error={errors[\"max\"]:.4f}, at {errors[\"max_idx\"]}, mean_error={errors[\"mean\"]:.4f}')\nerrors = leave_one_out_F_validation(corrs, 'sampson')\nprint (f'Sampson error, min error = {errors[\"min\"]:.4f}, max_error={errors[\"max\"]:.4f}, at {errors[\"max_idx\"]}, mean_error={errors[\"mean\"]:.4f}')\nprint (get_error_stat_string(errors))\n\nprint (get_big_errors_string(errors))\n\ndict_keys(['min', 'max', 'mean', 'all', 'max_idx'])\nSymmetrical epipolar distance, min error = 0.0941, max_error=16.8039, at 38, mean_error=2.0056\nSampson error, min error = 0.0463, max_error=7.8021, at 38, mean_error=0.9527\nErrors: min = 0.05, max=7.80, at 38, mean=0.95\nError &gt; 3.0 px, idxs: [38]\n\n\n\nimport matplotlib.pyplot as plt\ncorrs = np.loadtxt('sample_project/petrzin/corrs.txt')\nerrors = leave_one_out_H_validation(corrs)\nprint (errors.keys())\nprint (f'Symmetrical transfer distance, min error = {errors[\"min\"]:.4f}, max_error={errors[\"max\"]:.4f}, at {errors[\"max_idx\"]}, mean_error={errors[\"mean\"]:.4f}')\nprint (get_error_stat_string(errors))\n\ndict_keys(['min', 'max', 'mean', 'all', 'max_idx'])\nSymmetrical transfer distance, min error = 0.8735, max_error=152.3529, at 16, mean_error=50.3016\nErrors: min = 0.87, max=152.35, at 16, mean=50.30",
+    "crumbs": [
+      "metrics"
+    ]
+  }
+]
